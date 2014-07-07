@@ -8,6 +8,7 @@
 	<div class="col-md-8">
 		<p class="lead"><%= @topic.description %></p>
 		<% @posts.each do |post| %>
+		<%= image_tag(post.image.thumb.url) if post.image? %>
 		<div class="media">
 			<div class="media-body">
 				 <h4 class="media-heading">

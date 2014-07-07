@@ -1,5 +1,6 @@
 require 'faker'
 
+
 #Create Users
 5.times do 
 	user = User.new(

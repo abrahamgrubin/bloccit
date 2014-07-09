@@ -14,7 +14,7 @@ group :development do
  gem 'quiet_assets'
 
 end
-gem 'ffaker'
+
 gem 'bootstrap-sass', '~> 3.1.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'

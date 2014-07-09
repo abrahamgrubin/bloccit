@@ -1,8 +1,17 @@
 class CommentsController < ApplicationController
+  
   def create
-    redirect_to @comment
+    @topic = Topic.find(params[:topic_id])
+    @post = Post.find(params[:post_id])
+    @comment = current_user.comments.build(comment_params)
+    @comment.post = @post
+    
+    if @comment.save
+      redirect_to [@topic, @post], notice: 'Comment Saved'
+    end
   end
 
+  
   def destroy 
   	@topic = Topic.find(params[:topic_id])
   	@post = @topic.posts.find(params[:post_id])
@@ -20,3 +29,8 @@ class CommentsController < ApplicationController
 
 end
 
+private 
+
+def comment_params
+  params.require(:comment).permit(:body,:user_id, :post_id)
+end

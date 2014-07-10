@@ -1,3 +1,4 @@
+
 class VotesController < ApplicationController
 	before_filter :setup
 
@@ -7,27 +8,27 @@ class VotesController < ApplicationController
 	end
 
 	def down_vote
-		update_vote(1)
+		update_vote(- 1)
 		redirect_to :back
 	end
 
-	private 
+	  private
 
-	def setup
-		@topic = Topic.find(params[:topic_id])
-		@post = Post.find(params[:post_id])
+  def setup
+    @post = Post.find(params[:post_id])
+    @topic = @post.topic
 
-		@vote = @post.votes.where(user_id: current_user.id).first
-	end
+    @vote = @post.votes.where(user_id: current_user.id).first
+  end
 
-	def update_vote(new_value)
-		if @vote
-			authorize @vote, :update?
-			@vote.update_attribute(:value, new_value)
-		else
-            @vote = current_user.votes.build(value: new_value, post: @post)
-            authorize @vote, :create?
-            @vote.save
-        end
-	end
+  def update_vote(new_value)
+    if @vote # if it exists, update it
+      authorize @vote, :update?
+      @vote.update_attribute(:value, new_value)
+    else # create it
+      @vote = current_user.votes.build(value: new_value, post: @post)
+      authorize @vote, :create?
+      @vote.save
+    end
+  end
 end

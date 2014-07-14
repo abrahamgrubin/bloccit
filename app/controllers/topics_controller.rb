@@ -9,10 +9,10 @@ class TopicsController < ApplicationController
   	authorize @topic
   end
 
-  def show
-  	@topic = Topic.find(params[:id])
+   def show
+    @topic = Topic.find(params[:id])
     authorize @topic
-  	@posts = Post.paginate(page: params[:page], per_page: 10)
+    @posts = @topic.posts.paginate(page: params[:page], per_page: 10)
   end
 
   def edit

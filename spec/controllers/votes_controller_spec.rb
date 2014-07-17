@@ -1,8 +1,10 @@
  require 'rails_helper'
  
+ FactoryGirl.define do
+  
  describe VotesController do 
  
-   include TestFactories
+  
 
    include Devise::TestHelpers
  

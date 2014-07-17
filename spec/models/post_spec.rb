@@ -1,9 +1,8 @@
 require 'rails_helper'
- 
 
+FactoryGirl.define do
 describe Post do 
 	
-	include TestFactories
 
 	describe "vote methods" do 
 

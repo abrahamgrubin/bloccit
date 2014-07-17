@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+FactoryGirl.define do
 describe Vote do 
 	include TestFactories
   describe "validations" do
